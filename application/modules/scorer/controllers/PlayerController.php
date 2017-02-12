@@ -75,13 +75,25 @@ class Scorer_PlayerController extends Zend_Controller_Action
     }
 
     /**
-     * Add a new player
+     * Add a new player to the app and redirect the user to the player list
      *
      * @return void
      */
     public function addAction()
     {
         $form = new Scorer_Form_Player();
+
+        if ($this->getRequest()->isPost()) {
+
+            $post = $this->getRequest()->getPost();
+
+            if ($form->isValid($post)) {
+                $model = new Scorer_Model_Player();
+                $result = $model->add($post['forename'], $post['surname'], $post['email'], $post['contact_no']);
+
+                $this->redirect('/scorer/player/list');
+            }
+        }
 
         $this->view->title = 'Add a new player';
         $this->view->form = $form;

@@ -145,4 +145,37 @@ class Scorer_Model_Player extends Zend_Db_Table_Abstract
 
         return $stmt->fetchAll();
     }
+
+    /**
+     * Add a new player to the app
+     *
+     * @param string $forename
+     * @param string $surname
+     * @param string $email
+     * @param string|null $contact_no
+     * @return boolean
+     */
+    public function add($forename, $surname, $email, $contact_no)
+    {
+        $sql = "INSERT INTO `players` 
+                (
+                    `forename`, 
+                    `surname`,
+                    `contact_no`, 
+                    `email`
+                ) 
+                VALUES
+                (
+                    :forename, 
+                    :surname, 
+                    :contact_no, 
+                    :email
+                )";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->bindValue(':forename', $forename, PDO::PARAM_STR);
+        $stmt->bindValue(':surname', $surname, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':contact_no', $contact_no, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
 }
