@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-12 col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/scorer/player/profile/player/<?php echo $this->escape($this->player_id); ?>">Player profile</a></li>
+        </ol>
+
+        <h1><?php echo $this->title; ?></h1>
+
+        <dl class="dl-horizontal">
+            <dt>Player name</dt>
+            <dd><?php echo $this->escape($this->player['forename'] . ' ' . $this->player['surname']); ?></dd>
+            <dt>Contact number</dt>
+            <dd><?php echo $this->escape($this->player['contact_no']); ?></dd>
+            <dt>Contact email</dt>
+            <dd><?php echo $this->escape($this->player['email']); ?></dd>
+        </dl>
+
+        <h2>Scrabble results</h2>
+
+        <dl class="dl-horizontal">
+            <dt>Number of games</dt>
+            <dd><?php echo $this->escape($this->scrabble_stats['away_wins']); ?></dd>
+            <dt>Number of wins</dt>
+            <dd><?php echo ($this->scrabble_stats['home_wins'] + $this->scrabble_stats['away_wins']); ?></dd>
+            <dt>Number of losses</dt>
+            <dd><?php echo ($this->scrabble_stats['home_losses'] + $this->scrabble_stats['away_losses']); ?></dd>
+            <dt>Number of home wins</dt>
+            <dd><?php echo $this->scrabble_stats['home_wins']; ?></dd>
+            <dt>Number of home losses</dt>
+            <dd><?php echo $this->scrabble_stats['home_losses']; ?></dd>
+            <dt>Number of away wins</dt>
+            <dd><?php echo $this->scrabble_stats['away_wins']; ?></dd>
+            <dt>Number of away losses</dt>
+            <dd><?php echo $this->scrabble_stats['away_losses']; ?></dd>
+            <dt>Average score</dt>
+            <dd><?php echo $this->scrabble_stats['average']; ?></dd>
+            <dt>Lowest score</dt>
+            <dd><?php echo min($this->scrabble_stats['home_min'], $this->scrabble_stats['away_min']); ?></dd>
+            <dt>Highest score</dt>
+            <dd>
+                <?php echo max($this->scrabble_stats['home_max'], $this->scrabble_stats['away_max']); ?>
+
+                <?php if ($this->show_high_score_games === true) { ?>
+                <h3>High score games</h3>
+                <dl class="dl-horizontal">
+                    <?php foreach ($this->high_score_games as $game) { ?>
+                    <dt>Player</dt>
+                    <dd><?php echo $this->escape($game['player_forename'] . ' ' . $game['player_surname']); ?></dd>
+                    <dt>Opponent</dt>
+                    <dd><?php echo $this->escape($game['opponent_forename'] . ' ' . $game['opponent_surname']); ?></dd>
+                    <dt>Player score</dt>
+                    <dd><?php echo $this->escape($game['player_score']); ?></dd>
+                    <dt>Opponent score</dt>
+                    <dd><?php echo $this->escape($game['opponent_score']); ?></dd>
+                    <dt>Location</dt>
+                    <dd><?php echo $this->escape($game['location']); ?></dd>
+                    <dt>Date</dt>
+                    <dd><?php echo $this->escape($game['date']); ?></dd>
+                    <?php } ?>
+                </dl>
+                <?php } ?>
+            </dd>
+        </dl>
+    </div>
+</div>
