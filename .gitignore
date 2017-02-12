@@ -1,0 +1,4 @@
+*.db
+.idea/
+public/bower_components/
+library/Zend/

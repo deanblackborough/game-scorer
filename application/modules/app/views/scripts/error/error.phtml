@@ -1,0 +1,15 @@
+<p>
+<strong>Error:</strong> <?php echo $this->message; ?><br />
+<strong>Request:</strong> <?php echo $this->request_params['module']; ?>/<?php echo $this->request_params['controller']; ?>/<?php echo $this->request_params['action']; ?>
+</p>
+
+<?php if (isset($this->exception)): ?>
+
+<h3>Exception information:</h3>
+<p>
+<strong>Message:</strong> <?php echo $this->exception->getMessage() ?><br />
+<strong>Stack trace:</strong> <pre><?php echo $this->exception->getTraceAsString() ?></pre><br />
+<strong>Request Parameters:</strong> <?php echo $this->escape(var_export($this->request->getParams(), true)) ?>
+</p>
+
+<?php endif ?>
