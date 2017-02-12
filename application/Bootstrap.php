@@ -39,7 +39,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      */
     public function _initDatabaseConnection()
     {
-        /*$config_options = $this->getApplication()->getOptions();
+        $config_options = $this->getApplication()->getOptions();
 
         $pdo_params = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8;');
 
@@ -70,6 +70,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         // Assign default adapter
         $dbconn->setFetchMode(PDO::FETCH_ASSOC);
-        Zend_Db_Table_Abstract::setDefaultAdapter($dbconn);*/
+        Zend_Db_Table_Abstract::setDefaultAdapter($dbconn);
     }
 }

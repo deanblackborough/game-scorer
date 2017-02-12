@@ -5,7 +5,7 @@
 * @author Dean Blackborough <dean@g3d-development.com
 * @copyright G3D Development Limited
 */
-class App_ErrorController extends Zend_Controller_Action
+class Scorer_ErrorController extends Zend_Controller_Action
 {
 	/**
 	* Init the controller, run any set up code required by all the actions in the controller

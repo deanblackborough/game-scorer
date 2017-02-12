@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+        <h1><?php echo $this->title; ?></h1>
+
+        <table class="table">
+            <caption>The last <?php echo $this->escape($this->limit); ?> matches.</caption>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Game</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Player</th>
+                <th>Opponent</th>
+                <th>Player score</th>
+                <th>Opponent score</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->matches as $match) { ?>
+                <tr>
+                    <td>1</td>
+                    <td><?php echo $this->escape($match['game']); ?></td>
+                    <td><?php echo $this->escape($match['date']); ?></td>
+                    <td><?php echo $this->escape($match['location']); ?></td>
+                    <td><?php echo $this->escape($match['p1_forename'] . ' ' . $match['p1_surname']); ?></td>
+                    <td><?php echo $this->escape($match['p2_forename'] . ' ' . $match['p2_surname']); ?></td>
+                    <td><?php echo $this->escape($match['p1_score']); ?></td>
+                    <td><?php echo $this->escape($match['p2_score']); ?></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
