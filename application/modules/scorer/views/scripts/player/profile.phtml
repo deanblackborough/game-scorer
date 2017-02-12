@@ -8,6 +8,8 @@
 
         <h1><?php echo $this->title; ?></h1>
 
+        <p class="lead"><a href="/scorer/player/edit/player/<?php echo $this->escape($this->player_id); ?>">Edit</a> player details.</p>
+
         <dl class="dl-horizontal">
             <dt>Player name</dt>
             <dd><?php echo $this->escape($this->player['forename'] . ' ' . $this->player['surname']); ?></dd>

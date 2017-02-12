@@ -73,4 +73,41 @@ class Scorer_PlayerController extends Zend_Controller_Action
         $this->view->title = 'Full player list';
         $this->view->players = $players;
     }
+
+    /**
+     * Add a new player
+     *
+     * @return void
+     */
+    public function addAction()
+    {
+        $form = new Scorer_Form_Player();
+
+        $this->view->title = 'Add a new player';
+        $this->view->form = $form;
+    }
+
+    /**
+     * Edit player
+     *
+     * @return void
+     * @throws Exception
+     */
+    public function editAction()
+    {
+        $player_id = intval($this->getRequest()->getParam('player'));
+
+        $model_player = new Scorer_Model_Player();
+        $player = $model_player->profile($player_id);
+
+        if ($player === false) {
+            throw new Exception('Unable to find player profile');
+        }
+
+        $form = new Scorer_Form_Player($player_id);
+
+        $this->view->title = 'Edit player';
+        $this->view->form = $form;
+        $this->view->player_id = $player_id;
+    }
 }
