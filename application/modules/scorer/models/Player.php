@@ -178,4 +178,36 @@ class Scorer_Model_Player extends Zend_Db_Table_Abstract
         $stmt->bindValue(':contact_no', $contact_no, PDO::PARAM_STR);
         return $stmt->execute();
     }
+
+    /**
+     * Edit a player
+     *
+     * @param integer $id
+     * @param string $forename
+     * @param string $surname
+     * @param string $email
+     * @param string|null $contact_no
+     * @return boolean
+     */
+    public function edit($id, $forename, $surname, $email, $contact_no)
+    {
+        $sql = "UPDATE
+                    `players` 
+                SET
+                    `forename` = :forename, 
+                    `surname` = :surname, 
+                    `contact_no` = :contact_no, 
+                    `email` = :email 
+                WHERE 
+                    `id` = :player_id 
+                LIMIT 
+                    1";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->bindValue(':forename', $forename, PDO::PARAM_STR);
+        $stmt->bindValue(':surname', $surname, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':contact_no', $contact_no, PDO::PARAM_STR);
+        $stmt->bindValue(':player_id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }

@@ -14,18 +14,25 @@ class Scorer_Form_Player extends Zend_Form
      */
     protected $elements = array();
 
+    protected $edit = false;
+    protected $exiting_data = array();
+
     /**
      * Pass in any values that are needed to set up the form, optional
      *
+     * @param integer $id Player id in edit mode
+     * @param array $player Existing player details if editing
      * @param array|null Options for form
      */
-    public function __construct($id = null, $options = null)
+    public function __construct($id = null, $player = array(), $options = null)
     {
         parent::__construct($options = null);
 
         if ($id === null) {
             $this->setAction('/scorer/player/add');
         } else {
+            $this->edit = true;
+            $this->exiting_data = $player;
             $this->setAction('/scorer/player/edit/player/' . $id);
         }
 
@@ -47,12 +54,20 @@ class Scorer_Form_Player extends Zend_Form
         $forename->setDescription('Enter player forename');
         $forename->setAttribs(array('maxlength'=>255, 'class'=>'form-control input-sm'));
 
+        if ($this->edit === true) {
+            $forename->setValue($this->exiting_data['forename']);
+        }
+
         $this->elements['forename'] = $forename;
 
         $surname = new Zend_Form_Element_Text('surname');
         $surname->setLabel('Surname (required)');
         $surname->setDescription('Enter player surname');
         $surname->setAttribs(array('maxlength'=>255, 'class'=>'form-control input-sm'));
+
+        if ($this->edit === true) {
+            $surname->setValue($this->exiting_data['surname']);
+        }
 
         $this->elements['surname'] = $surname;
 
@@ -61,12 +76,20 @@ class Scorer_Form_Player extends Zend_Form
         $contact_no->setDescription('Enter player contact number');
         $contact_no->setAttribs(array('maxlength'=>20, 'class'=>'form-control input-sm'));
 
+        if ($this->edit === true) {
+            $contact_no->setValue($this->exiting_data['contact_no']);
+        }
+
         $this->elements['contact_no'] = $contact_no;
 
         $email = new Zend_Form_Element_Text('email');
         $email->setLabel('Email');
         $email->setDescription('Enter player email');
         $email->setAttribs(array('maxlength'=>255, 'class'=>'form-control input-sm'));
+
+        if ($this->edit === true) {
+            $email->setValue($this->exiting_data['email']);
+        }
 
         $this->elements['email'] = $email;
 
