@@ -122,4 +122,27 @@ class Scorer_Model_Player extends Zend_Db_Table_Abstract
 
         return $stmt->fetchAll();
     }
+
+    /**
+     * List of players
+     *
+     * @return array
+     */
+    public function all()
+    {
+        $sql = "SELECT 
+                    `id`, 
+                    `forename`, 
+                    `surname`, 
+                    `contact_no`, 
+                    `email`
+                FROM 
+                    `players` 
+                ORDER BY 
+                    `surname`, `forename`";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

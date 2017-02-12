@@ -59,4 +59,18 @@ class Scorer_PlayerController extends Zend_Controller_Action
         $this->view->show_high_score_games = $show_high_score_games;
         $this->view->high_score_games = $high_score_games;
     }
+
+    /**
+     * Full player list
+     *
+     * @return void
+     */
+    public function listAction()
+    {
+        $model = new Scorer_Model_Player();
+        $players = $model->all();
+
+        $this->view->title = 'Full player list';
+        $this->view->players = $players;
+    }
 }

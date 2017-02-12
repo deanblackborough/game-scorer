@@ -26,7 +26,9 @@ class Scorer_Model_Match extends Zend_Db_Table_Abstract
                     `p2`.`forename` AS p2_forename,
                     `p2`.`surname` AS p2_surname,
                     `results`.`player_score` AS `p1_score`,
-                    `results`.`opponent_score` AS `p2_score`
+                    `results`.`opponent_score` AS `p2_score`,
+                    `results`.`player_id` AS `p1_id`,
+                    `results`.`opponent_id` AS `p2_id`
                 FROM 
                     `matches` 
                 INNER JOIN 
